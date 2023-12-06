@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: frontend
+    restart: always
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3002"
+    networks:
+      - letsencrypt-docker-compose_default
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - 5432
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=ibnuabbas
+      - POSTGRES_USER=ibnuabbas
+      - POSTGRES_DB=ibnuabbas
+    networks:
+      - letsencrypt-docker-compose_default
+
+networks:
+  letsencrypt-docker-compose_default:
+    external: true
+# if postgres doesnt work maybe the port already used by another running postgres, consider cleaning docker redundant first
