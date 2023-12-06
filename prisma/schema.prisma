@@ -27,6 +27,7 @@ model Murid {
   MPU       MPU?
   Ulum      Ulum?
   Quran     Quran?
+  Qiroah    Qiroah[]
 }
 
 model Kehadiran {
@@ -52,6 +53,13 @@ model MPU {
 }
 
 model Ulum {
+  user    Murid  @relation(fields: [userId], references: [id])
+  userId  Int    @id
+  nilai   String
+  catatan String
+}
+
+model Qiroah {
   user    Murid  @relation(fields: [userId], references: [id])
   userId  Int    @id
   nilai   String

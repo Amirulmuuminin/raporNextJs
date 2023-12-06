@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { EditNama } from "./edit-nama";
+import Link from "next/link";
 
 interface MuridTileProps {
   allMurid: {
@@ -21,7 +22,9 @@ export const MuridTile: FC<MuridTileProps> = ({ allMurid }) => {
               item.namaArab ? "text-end" : ""
             }`}
           >
-            <h2>{item.namaArab ?? item.namaIndo}</h2>
+            <Link href={`/murid/${item.id}`}>
+              <h2>{item.namaArab ?? item.namaIndo}</h2>
+            </Link>
 
             {/* edit nama */}
             <div className="flex gap-2 absolute -bottom-[16px] right-0 text-[12px]">

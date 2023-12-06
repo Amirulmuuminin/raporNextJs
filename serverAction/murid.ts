@@ -19,3 +19,11 @@ export async function editNamaMurid(id: number, namaArab: string) {
     },
   });
 }
+
+export async function getMuridById(id: number) {
+  return await prisma.murid.findUnique({
+    where: {
+      id: id,
+    },
+  });
+}

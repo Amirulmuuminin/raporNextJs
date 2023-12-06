@@ -17,7 +17,7 @@ interface MyFormProps {
   indo?: string;
 }
 
-const MyForm: React.FC<MyFormProps> = ({ id, arab, wali, indo }) => {
+const FormKelas: React.FC<MyFormProps> = ({ id, arab, wali, indo }) => {
   const uniqueNames = [
     "Abdullah",
     "Aisyah",
@@ -122,4 +122,4 @@ const MyForm: React.FC<MyFormProps> = ({ id, arab, wali, indo }) => {
   );
 };
 
-export default MyForm;
+export default FormKelas;

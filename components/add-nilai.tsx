@@ -7,24 +7,39 @@ import {
   AlertDialogCancel,
   AlertDialogHeader,
 } from "@/components/ui/alert-dialog";
-import FormKelas from "./form-kelas";
+import FormPelajaran from "./form-pelajaran";
 
-interface TambahKelasProps {}
+interface TambahKelasProps {
+  id: number;
+  pelajaran: string;
+  nilai?: string;
+  catatan?: string;
+}
 
-export const TambahKelas: FC<TambahKelasProps> = ({}) => {
+export const AddNilai: FC<TambahKelasProps> = ({
+  id,
+  pelajaran,
+  nilai,
+  catatan,
+}) => {
   return (
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
-          <div className="border border-[#1E1E1E] bg-[#ABE5BC] uppercase rounded-lg px-3 py-2 fixed bottom-4 right-4 font-bold">
-            Tambah Kelas
+          <div className="bg-[#CFADE8] px-3 py-1 rounded-lg border border-[#1E1E1E]">
+            EDIT
           </div>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader className="font-bold">
             Lengkapi Data Kelas
           </AlertDialogHeader>
-          <FormKelas />
+          <FormPelajaran
+            id={id}
+            pelajaran={pelajaran}
+            catatan={catatan}
+            nilai={nilai}
+          />
           <AlertDialogFooter>
             <AlertDialogCancel>Close</AlertDialogCancel>
           </AlertDialogFooter>

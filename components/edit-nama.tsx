@@ -19,8 +19,12 @@ export const EditNama: FC<TambahKelasProps> = ({ id, namaArab }) => {
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
-          <div className="bg-[#CFADE8] px-3 py-1 rounded-lg border border-[#1E1E1E] text-sm">
-            EDIT NAMA (ARAB)
+          <div
+            className={`bg-[${
+              namaArab ? "#CFADE8" : "#FFA89A"
+            }] px-3 py-1 rounded-lg border border-[#1E1E1E] text-[9.5px]`}
+          >
+            {namaArab ? "EDIT NAMA (ARAB)" : "INPUT NAMA (ARAB)!"}
           </div>
         </AlertDialogTrigger>
         <AlertDialogContent>
