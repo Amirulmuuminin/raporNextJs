@@ -1,33 +1,56 @@
 "use client";
 
-import React, { useState, FormEvent, ChangeEvent } from "react";
+import { quranDataPush } from "@/serverAction/quranData";
+import React, { useState, FormEvent, ChangeEvent, FC } from "react";
+import { useToast } from "./ui/use-toast";
 
-interface HafalanData {
+export interface HafalanData {
   jumlahHafalan: string;
   juz: string;
   nilai: string;
   prediket: string;
 }
 
-interface TilawahData {
+export interface TilawahData {
   jumlahTilawah: string;
   juz: string;
   nilai: string;
   prediket: string;
 }
 
-interface OtherData {
+export interface OtherData {
   miqdar: string;
-  sakit?: string;
-  izin?: string;
-  lainnya?: string;
+  sakit: string;
+  izin: string;
+  lainnya: string;
+  catatan: string;
 }
 
-const HafalanForm: React.FC = () => {
+interface HafalanFornProps {
+  id: number;
+  existingData?: {
+    tilawahData: {
+      jumlahTilawah: string;
+      juz: string;
+      nilai: string;
+      prediket: string;
+    }[];
+    hafalanData: {
+      jumlahHafalan: string;
+      juz: string;
+      nilai: string;
+      prediket: string;
+    }[];
+  };
+}
+
+const HafalanForm: FC<HafalanFornProps> = ({ id, existingData }) => {
   // hafalan
-  const [hafalanData, setHafalanData] = useState<HafalanData[]>([
-    { jumlahHafalan: "", juz: "", nilai: "", prediket: "" },
-  ]);
+  const [hafalanData, setHafalanData] = useState<HafalanData[]>(
+    existingData?.hafalanData ?? [
+      { jumlahHafalan: "", juz: "", nilai: "", prediket: "" },
+    ]
+  );
 
   const addRow = () => {
     setHafalanData([
@@ -47,9 +70,11 @@ const HafalanForm: React.FC = () => {
   };
 
   // tilawah
-  const [tilawahData, setTilawahData] = useState<TilawahData[]>([
-    { jumlahTilawah: "", juz: "", nilai: "", prediket: "" },
-  ]);
+  const [tilawahData, setTilawahData] = useState<TilawahData[]>(
+    existingData?.tilawahData ?? [
+      { jumlahTilawah: "", juz: "", nilai: "", prediket: "" },
+    ]
+  );
 
   const addRowTilawah = () => {
     setTilawahData([
@@ -74,10 +99,13 @@ const HafalanForm: React.FC = () => {
     lainnya: "",
     miqdar: "",
     sakit: "",
+    catatan: "",
   });
 
   // handlechange
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setOtherData({
       ...otherData,
@@ -86,11 +114,13 @@ const HafalanForm: React.FC = () => {
   };
 
   // submit
+  const { toast } = useToast();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(tilawahData, "tilawah");
-    console.log(hafalanData, "hafalan");
-    console.log(otherData, "otherdata");
+    quranDataPush(tilawahData, hafalanData, otherData, id);
+    toast({
+      title: "Berhasil memperbarui data",
+    });
   };
 
   return (
@@ -292,6 +322,17 @@ const HafalanForm: React.FC = () => {
             onChange={handleChange}
           />
         </div>
+
+        <textarea
+          className="mt-3 border px-3 py-2 rounded-lg w-full border-[#1e1e1e]"
+          name="catatan"
+          id="catatan"
+          cols={10}
+          rows={10}
+          value={otherData.catatan}
+          placeholder="Tulis catatan"
+          onChange={handleChange}
+        ></textarea>
       </div>
 
       {/* sumbit button */}

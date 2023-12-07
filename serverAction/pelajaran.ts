@@ -9,7 +9,9 @@ export async function createQuran(
   maqraT: string,
   nilaiT: string,
   catatan: string,
-  miqdar: string
+  miqdar: string,
+  prediketH: string,
+  prediketT: string
 ) {
   // todo: perbaiki format sebelum masuk db
 
@@ -23,6 +25,8 @@ export async function createQuran(
       maqraT,
       nilaiH,
       nilaiT,
+      prediketH,
+      prediketT,
       catatan,
       miqdar,
     },
@@ -32,6 +36,8 @@ export async function createQuran(
       maqraT,
       nilaiH,
       nilaiT,
+      prediketH,
+      prediketT,
       catatan,
       miqdar,
     },
@@ -121,6 +127,40 @@ export async function createQiroah(id: number, nilai: string, catatan: string) {
 
 export async function getQiroahById(id: number) {
   return await prisma.qiroah.findUnique({
+    where: {
+      userId: id,
+    },
+  });
+}
+
+// kehadiran
+export async function createKehadiran(
+  id: number,
+  izin: number,
+  lainnya: number,
+  sakit: number
+) {
+  return await prisma.kehadiran.upsert({
+    where: {
+      userId: id,
+    },
+    update: {
+      userId: id,
+      izin: izin,
+      lainnya: lainnya,
+      sakit: sakit,
+    },
+    create: {
+      userId: id,
+      izin: izin,
+      lainnya: lainnya,
+      sakit: sakit,
+    },
+  });
+}
+
+export async function getKehadiranById(id: number) {
+  return await prisma.kehadiran.findUnique({
     where: {
       userId: id,
     },
