@@ -31,9 +31,7 @@ export const AddNilai: FC<TambahKelasProps> = ({
           </div>
         </AlertDialogTrigger>
         <AlertDialogContent>
-          <AlertDialogHeader className="font-bold">
-            Lengkapi Data Kelas
-          </AlertDialogHeader>
+          <AlertDialogHeader className="font-bold">Isi Nilai</AlertDialogHeader>
           <FormPelajaran
             id={id}
             pelajaran={pelajaran}

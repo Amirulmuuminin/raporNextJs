@@ -1,7 +1,11 @@
 // MyForm.tsx
 "use client";
 
-import { createLughoh } from "@/serverAction/lughoh";
+import {
+  createLughoh,
+  createMPU,
+  createQiroah,
+} from "@/serverAction/pelajaran";
 import { useState, ChangeEvent, FormEvent } from "react";
 
 interface FormData {
@@ -41,6 +45,10 @@ const FormPelajaran: React.FC<MyFormProps> = ({
     e.preventDefault();
     if (pelajaran == "lughoh")
       createLughoh(id, formData.nilai, formData.catatan);
+    if (pelajaran == "mpu") createMPU(id, formData.nilai, formData.catatan);
+    if (pelajaran == "qiroah")
+      createQiroah(id, formData.nilai, formData.catatan);
+
     console.log("Form data submitted:", formData);
     // Add your logic to handle the form data (e.g., send it to the server)
   };

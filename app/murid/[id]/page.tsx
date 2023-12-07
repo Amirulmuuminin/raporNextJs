@@ -1,5 +1,4 @@
-import { LughohTile } from "@/components/lughoh-tile";
-import { getLughohById } from "@/serverAction/lughoh";
+import { PelajaranTile } from "@/components/pelajaran-tile";
 import { getMuridById } from "@/serverAction/murid";
 import { FC } from "react";
 
@@ -11,7 +10,7 @@ interface pageProps {
 
 const page: FC<pageProps> = async ({ params: { id } }) => {
   const murid = await getMuridById(parseInt(id));
-
+  console.log(murid);
   return (
     <div>
       <h1 className="text-center font-bold mt-5 underline">
@@ -19,7 +18,12 @@ const page: FC<pageProps> = async ({ params: { id } }) => {
       </h1>
 
       {/* tiles */}
-      <LughohTile id={parseInt(id)} />
+      <div className="flex flex-col gap-9">
+        <PelajaranTile id={parseInt(id)} pelajaran="quran" />
+        <PelajaranTile id={parseInt(id)} pelajaran="lughoh" />
+        <PelajaranTile id={parseInt(id)} pelajaran="mpu" />
+        <PelajaranTile id={parseInt(id)} pelajaran="qiroah" />
+      </div>
     </div>
   );
 };
