@@ -6,6 +6,7 @@ import {
   getQiroahById,
   getQuranById,
 } from "@/serverAction/pelajaran";
+import Link from "next/link";
 
 interface PelajaranTileProps {
   id: number;
@@ -36,11 +37,18 @@ export const PelajaranTile: FC<PelajaranTileProps> = async ({
         <div className="mt-1 ml-1 w-fit text-[#1E1E1E] border border-[#1E1E1E] text-start bg-[#FFFAF0] py-1 px-2 rounded-lg shadow-[2px_2px_#1E1E1E]">
           {pelajaran !== "quran"
             ? `Nilai: ${active?.nilai ?? "Belum Tersedia"}`
-            : quran?.maqra
-            ? quran.maqra.split("\n").map((item, i) => {
+            : quran?.maqraH ?? quran?.maqraT
+            ? quran.maqraH.split("\n").map((item, i) => {
                 return (
                   <p key={i}>
-                    {item}: {quran.nilai.split("\n")[i]}
+                    {item}: {quran.nilaiH.split("\n")[i]}
+                  </p>
+                );
+              }) ??
+              quran.maqraT.split("\n").map((item, i) => {
+                return (
+                  <p key={i}>
+                    {item}: {quran.nilaiT.split("\n")[i]}
                   </p>
                 );
               })
@@ -53,12 +61,21 @@ export const PelajaranTile: FC<PelajaranTileProps> = async ({
 
       {/* button */}
       <div className="absolute right-0 -bottom-[16px]">
-        <AddNilai
-          id={id}
-          pelajaran={pelajaran}
-          catatan={active?.catatan}
-          nilai={active?.nilai}
-        />
+        {pelajaran !== "quran" && (
+          <AddNilai
+            id={id}
+            pelajaran={pelajaran}
+            catatan={active?.catatan}
+            nilai={active?.nilai}
+          />
+        )}
+        {pelajaran == "quran" && (
+          <Link href={`/quran/${id}`}>
+            <div className="bg-[#CFADE8] px-3 py-1 rounded-lg border border-[#1E1E1E]">
+              EDIT
+            </div>
+          </Link>
+        )}
       </div>
     </div>
   );

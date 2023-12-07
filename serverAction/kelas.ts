@@ -7,6 +7,14 @@ export async function addKelas(formData: any) {
   });
 }
 
+export async function getKelasByName(name: string) {
+  return await prisma.kelas.findUnique({
+    where: {
+      arab: name,
+    },
+  });
+}
+
 export async function editKelas(formData: any, id: number) {
   await prisma.kelas.update({
     where: {

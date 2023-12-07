@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Sora({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
         className={`${inter.className} bg-[#FFFAF0] min-h-screen min-w-full px-3 pb-20`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

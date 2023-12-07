@@ -7,6 +7,7 @@ import {
   createQiroah,
 } from "@/serverAction/pelajaran";
 import { useState, ChangeEvent, FormEvent } from "react";
+import HafalanForm from "./quran-form";
 
 interface FormData {
   nilai: string;
@@ -17,6 +18,8 @@ interface MyFormProps {
   id: number;
   nilai?: string;
   catatan?: string;
+  maqra?: string;
+  miqdar?: string;
   pelajaran: string;
 }
 
@@ -49,36 +52,40 @@ const FormPelajaran: React.FC<MyFormProps> = ({
     if (pelajaran == "qiroah")
       createQiroah(id, formData.nilai, formData.catatan);
 
-    console.log("Form data submitted:", formData);
+    console.log(`Form data submitted: ${pelajaran}`, formData);
     // Add your logic to handle the form data (e.g., send it to the server)
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          placeholder="Nilai"
-          className="mt-3 border px-3 py-2 rounded-lg w-full"
-          type="number"
-          id="nilai"
-          name="nilai"
-          value={formData.nilai}
-          onChange={handleChange}
-        />
-      </div>
+      {pelajaran !== "quran" && (
+        <>
+          <div>
+            <input
+              placeholder="Nilai"
+              className="mt-3 border px-3 py-2 rounded-lg w-full"
+              type="number"
+              id="nilai"
+              name="nilai"
+              value={formData.nilai}
+              onChange={handleChange}
+            />
+          </div>
 
-      <div>
-        <textarea
-          className="mt-3 border px-3 py-2 rounded-lg w-full"
-          name="catatan"
-          id="catatan"
-          cols={10}
-          rows={10}
-          value={formData.catatan}
-          placeholder="Tulis catatan"
-          onChange={handleChange}
-        ></textarea>
-      </div>
+          <div>
+            <textarea
+              className="mt-3 border px-3 py-2 rounded-lg w-full"
+              name="catatan"
+              id="catatan"
+              cols={10}
+              rows={10}
+              value={formData.catatan}
+              placeholder="Tulis catatan"
+              onChange={handleChange}
+            ></textarea>
+          </div>
+        </>
+      )}
 
       <button
         type="submit"

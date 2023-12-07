@@ -11,6 +11,8 @@ import {
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { deleteKelas } from "@/serverAction/kelas";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface TambahKelasProps {
   id: number;
@@ -20,10 +22,16 @@ interface TambahKelasProps {
 }
 
 export const DeleteKelas: FC<TambahKelasProps> = ({ id, arab, indo, wali }) => {
+  const { toast } = useToast();
+  const router = useRouter();
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     deleteKelas(id);
-    console.log("data deleted");
+    toast({
+      title: "Kelas berhasil dihapus",
+      description: "Data murid tetap ada",
+    });
+    router.refresh();
     // Add your logic to handle the form data (e.g., send it to the server)
   };
 

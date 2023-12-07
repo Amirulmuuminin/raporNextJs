@@ -4,26 +4,36 @@ import prisma from "@/db";
 // quran
 export async function createQuran(
   id: number,
-  nilai: string,
+  maqraH: string,
+  nilaiH: string,
+  maqraT: string,
+  nilaiT: string,
   catatan: string,
-  maqra: string,
   miqdar: string
 ) {
+  // todo: perbaiki format sebelum masuk db
+
   return await prisma.quran.upsert({
     where: {
       userId: id,
     },
     update: {
       userId: id,
-      nilai: nilai,
-      catatan: catatan,
+      maqraH,
+      maqraT,
+      nilaiH,
+      nilaiT,
+      catatan,
+      miqdar,
     },
     create: {
       userId: id,
-      nilai: nilai,
-      catatan: catatan,
-      maqra: maqra,
-      miqdar: miqdar,
+      maqraH,
+      maqraT,
+      nilaiH,
+      nilaiT,
+      catatan,
+      miqdar,
     },
   });
 }

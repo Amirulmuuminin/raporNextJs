@@ -1,8 +1,10 @@
 // MyForm.tsx
 "use client";
 
-import { addKelas, editKelas } from "@/serverAction/kelas";
+import { addKelas, editKelas, getKelasByName } from "@/serverAction/kelas";
 import { useState, ChangeEvent, FormEvent } from "react";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   arab: string;
@@ -18,6 +20,7 @@ interface MyFormProps {
 }
 
 const FormKelas: React.FC<MyFormProps> = ({ id, arab, wali, indo }) => {
+  const { toast } = useToast();
   const uniqueNames = [
     "Abdullah",
     "Aisyah",
@@ -64,10 +67,27 @@ const FormKelas: React.FC<MyFormProps> = ({ id, arab, wali, indo }) => {
     });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const router = useRouter();
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    id ? editKelas(formData, id) : addKelas(formData);
-    console.log("Form data submitted:", formData);
+    const exist = await getKelasByName(formData.arab);
+    try {
+      if (exist?.arab) throw "kelas sudah ada";
+      id ? editKelas(formData, id) : addKelas(formData);
+      toast({
+        variant: "default",
+        title: "KELAS DITAMBAHKAN",
+        description: "kelas berhasil ditambahkan",
+      });
+      router.refresh();
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "ERROR",
+        description: error,
+      });
+    }
+
     // Add your logic to handle the form data (e.g., send it to the server)
   };
 
