@@ -1,6 +1,11 @@
 "use server";
 import { HafalanData, OtherData, TilawahData } from "@/components/quran-form";
-import { createKehadiran, createQuran, getQuranById } from "./pelajaran";
+import {
+  createKehadiran,
+  createQuran,
+  getKehadiranById,
+  getQuranById,
+} from "./pelajaran";
 
 export const quranDataPush = async (
   tilawahData: TilawahData[],
@@ -127,7 +132,16 @@ export const quranDataPull = async (id: number) => {
     };
   });
 
-  // extract other data
+  const kehadiran = await getKehadiranById(id);
 
-  return { tilawahData, hafalanData };
+  // extract other data
+  const miqdar = data.miqdar;
+  const catatan = data.catatan;
+  const sakit = kehadiran?.sakit?.toString() ?? "";
+  const izin = kehadiran?.izin?.toString() ?? "";
+  const lainnya = kehadiran?.lainnya?.toString() ?? "";
+
+  const otherData = { miqdar, catatan, sakit, izin, lainnya };
+
+  return { tilawahData, hafalanData, otherData };
 };

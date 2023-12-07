@@ -41,6 +41,13 @@ interface HafalanFornProps {
       nilai: string;
       prediket: string;
     }[];
+    otherData: {
+      miqdar: string;
+      sakit: string;
+      izin: string;
+      lainnya: string;
+      catatan: string;
+    };
   };
 }
 
@@ -94,13 +101,15 @@ const HafalanForm: FC<HafalanFornProps> = ({ id, existingData }) => {
   };
 
   // otherData
-  const [otherData, setOtherData] = useState<OtherData>({
-    izin: "",
-    lainnya: "",
-    miqdar: "",
-    sakit: "",
-    catatan: "",
-  });
+  const [otherData, setOtherData] = useState<OtherData>(
+    existingData?.otherData ?? {
+      izin: "",
+      lainnya: "",
+      miqdar: "",
+      sakit: "",
+      catatan: "",
+    }
+  );
 
   // handlechange
   const handleChange = (
