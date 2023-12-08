@@ -6,7 +6,7 @@ import Link from "next/link";
 
 interface KelasTileProps {
   allKelas: {
-    id: number;
+    id: string;
     arab: string;
     wali: string;
     indo: string;
@@ -35,11 +35,11 @@ export const KelasTile: FC<KelasTileProps> = ({ allKelas }) => {
             <div className="flex gap-2 absolute -bottom-[16px] right-0 text-[12px]">
               <EditKelas
                 arab={item.arab}
-                id={item.id}
+                id={parseInt(item.id)}
                 indo={item.indo}
                 wali={item.wali}
               />
-              <DeleteKelas id={item.id} arab={item.arab} />
+              <DeleteKelas id={parseInt(item.id)} arab={item.arab} />
             </div>
           </div>
         );

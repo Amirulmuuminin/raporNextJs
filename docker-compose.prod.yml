@@ -11,3 +11,9 @@ services:
       - NODE_ENV=production
     ports:
       - "3002"
+    networks:
+      - letsencrypt-docker-compose_default
+
+networks:
+  letsencrypt-docker-compose_default:
+    external: true

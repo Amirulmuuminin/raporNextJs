@@ -7,12 +7,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model Kelas {
-  id   Int    @id @default(autoincrement())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   arab String @unique
   wali String
   indo String @unique
@@ -22,7 +22,8 @@ model Murid {
   namaIndo  String
   namaArab  String?
   kelas     String
-  id        Int        @id
+  induk     Int        @unique
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
   Kehadiran Kehadiran?
   Lughoh    Lughoh?
   MPU       MPU?
@@ -32,8 +33,8 @@ model Murid {
 }
 
 model Kehadiran {
-  user    Murid @relation(fields: [userId], references: [id])
-  userId  Int   @id
+  user    Murid  @relation(fields: [userId], references: [id])
+  userId  String @id @default(auto()) @map("_id") @db.ObjectId
   sakit   Int?
   izin    Int?
   lainnya Int?
@@ -41,35 +42,35 @@ model Kehadiran {
 
 model Lughoh {
   user    Murid  @relation(fields: [userId], references: [id])
-  userId  Int    @id
+  userId  String @id @default(auto()) @map("_id") @db.ObjectId
   nilai   String
   catatan String
 }
 
 model MPU {
   user    Murid  @relation(fields: [userId], references: [id])
-  userId  Int    @id
+  userId  String @id @default(auto()) @map("_id") @db.ObjectId
   nilai   String
   catatan String
 }
 
 model Ulum {
   user    Murid  @relation(fields: [userId], references: [id])
-  userId  Int    @id
+  userId  String @id @default(auto()) @map("_id") @db.ObjectId
   nilai   String
   catatan String
 }
 
 model Qiroah {
   user    Murid  @relation(fields: [userId], references: [id])
-  userId  Int    @id
+  userId  String @id @default(auto()) @map("_id") @db.ObjectId
   nilai   String
   catatan String
 }
 
 model Quran {
   user      Murid  @relation(fields: [userId], references: [id])
-  userId    Int    @id
+  userId    String @id @default(auto()) @map("_id") @db.ObjectId
   maqraT    String
   nilaiT    String
   prediketT String
