@@ -22,4 +22,6 @@ const page: FC<pageProps> = async ({ params: { namaKelas } }) => {
   );
 };
 
+export const dynamic = "force-dynamic";
+
 export default page;

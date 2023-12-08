@@ -23,4 +23,6 @@ const page: FC<pageProps> = async ({ params: { id } }) => {
   );
 };
 
+export const dynamic = "force-dynamic";
+
 export default page;
