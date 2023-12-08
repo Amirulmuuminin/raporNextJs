@@ -25,5 +25,13 @@ export async function getMuridById(id: number) {
     where: {
       id: id,
     },
+    include: {
+      Kehadiran: true,
+      Lughoh: true,
+      MPU: true,
+      Qiroah: true,
+      Quran: true,
+      Ulum: true,
+    },
   });
 }

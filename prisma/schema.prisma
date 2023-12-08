@@ -14,7 +14,7 @@ model Kelas {
   id   Int    @id @default(autoincrement())
   arab String @unique
   wali String
-  indo String
+  indo String @unique
 }
 
 model Murid {

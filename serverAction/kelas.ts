@@ -15,6 +15,14 @@ export async function getKelasByName(name: string) {
   });
 }
 
+export async function getKelasByIndoName(name: string) {
+  return await prisma.kelas.findUnique({
+    where: {
+      indo: name,
+    },
+  });
+}
+
 export async function editKelas(formData: any, id: number) {
   await prisma.kelas.update({
     where: {
