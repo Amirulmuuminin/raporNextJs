@@ -1,11 +1,11 @@
 version: "3.8"
 services:
-  frontend:
-    container_name: frontend
+  rapor:
+    container_name: rapor
     build:
       dockerfile: Dockerfile
       context: .
-    image: frontend
+    image: rapor
     restart: always
     environment:
       - NODE_ENV=production
@@ -13,23 +13,7 @@ services:
       - "3002"
     networks:
       - letsencrypt-docker-compose_default
-    depends_on:
-      - db
 
-  db:
-    image: mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-    ports:
-      - 3306:3306
-    volumes:
-      - ./postgres:/var/lib/postgresql/data
-    networks:
-      - letsencrypt-docker-compose_default
-
-# change port in prod ex: 5432:5432 to 5432 only
-# enable this in prod
 networks:
   letsencrypt-docker-compose_default:
-    # external: true
+    external: true
