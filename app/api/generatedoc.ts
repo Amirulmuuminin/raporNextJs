@@ -9,17 +9,16 @@ import path from "path";
 import { getMuridById } from "@/serverAction/murid";
 import { getKelasByIndoName } from "@/serverAction/kelas";
 
-export async function generate(id: number) {
+export async function generate(id: string) {
   // gaining data from prisma
   const murid = await getMuridById(id);
   const kelas = await getKelasByIndoName(murid?.kelas!);
-  console.log(murid, kelas);
 
   const getNilai = (nilai: number) => {
-    if (nilai > 90) return "ممتاز";
-    if (nilai < 90 && nilai > 80) return "جيد جدا";
-    if (nilai < 80 && nilai > 70) return "جيد";
-    if (nilai < 70 && nilai > 60) return "مقبول";
+    if (nilai >= 90) return "ممتاز";
+    if (nilai < 90 && nilai >= 80) return "جيد جدا";
+    if (nilai < 80 && nilai >= 70) return "جيد";
+    if (nilai < 70 && nilai >= 60) return "مقبول";
   };
 
   // Load the docx file as binary content
@@ -48,7 +47,7 @@ export async function generate(id: number) {
     jumlah_lainnya: murid?.Kehadiran?.lainnya ?? "-",
     wali_kelas: kelas?.wali ?? "belum diinput",
     nama: murid?.namaArab ?? "belum diinput",
-    no_induk: murid?.id ?? "belum diinput",
+    no_induk: murid?.induk ?? "belum diinput",
     kelas: kelas?.arab ?? "belum diinput",
     maqraH: murid?.Quran?.maqraH.replace(/[()]/g, "") ?? "",
     maqraT: murid?.Quran?.maqraT.replace(/[()]/g, "") ?? "",

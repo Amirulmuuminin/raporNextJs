@@ -9,7 +9,7 @@ export async function getMuridByKelas(kelas: string) {
   });
 }
 
-export async function editNamaMurid(id: number, namaArab: string) {
+export async function editNamaMurid(id: string, namaArab: string) {
   await prisma.murid.update({
     where: {
       id: id,
@@ -20,10 +20,10 @@ export async function editNamaMurid(id: number, namaArab: string) {
   });
 }
 
-export async function getMuridById(id: number) {
+export async function getMuridById(id: string) {
   return await prisma.murid.findUnique({
     where: {
-      id: id,
+      id,
     },
     include: {
       Kehadiran: true,

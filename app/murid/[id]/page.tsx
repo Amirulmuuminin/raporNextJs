@@ -9,13 +9,8 @@ interface pageProps {
   };
 }
 
-const download = async (id: string) => {
-  await fetch(`/api?id=${id}`);
-};
-
 const page: FC<pageProps> = async ({ params: { id } }) => {
-  const murid = await getMuridById(parseInt(id));
-  console.log(murid);
+  const murid = await getMuridById(id);
   return (
     <div className="pb-9">
       <h1 className="text-center font-bold mt-5 underline">
@@ -24,10 +19,10 @@ const page: FC<pageProps> = async ({ params: { id } }) => {
 
       {/* tiles */}
       <div className="flex flex-col gap-9">
-        <PelajaranTile id={parseInt(id)} pelajaran="quran" />
-        <PelajaranTile id={parseInt(id)} pelajaran="lughoh" />
-        <PelajaranTile id={parseInt(id)} pelajaran="mpu" />
-        <PelajaranTile id={parseInt(id)} pelajaran="qiroah" />
+        <PelajaranTile id={id} pelajaran="quran" />
+        <PelajaranTile id={id} pelajaran="lughoh" />
+        <PelajaranTile id={id} pelajaran="mpu" />
+        <PelajaranTile id={id} pelajaran="qiroah" />
       </div>
 
       <Download id={id} />

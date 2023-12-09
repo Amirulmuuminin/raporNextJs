@@ -3,7 +3,7 @@ import prisma from "@/db";
 
 // quran
 export async function createQuran(
-  id: number,
+  id: string,
   maqraH: string,
   nilaiH: string,
   maqraT: string,
@@ -20,7 +20,6 @@ export async function createQuran(
       userId: id,
     },
     update: {
-      userId: id,
       maqraH,
       maqraT,
       nilaiH,
@@ -44,7 +43,7 @@ export async function createQuran(
   });
 }
 
-export async function getQuranById(id: number) {
+export async function getQuranById(id: string) {
   return await prisma.quran.findUnique({
     where: {
       userId: id,
@@ -53,13 +52,12 @@ export async function getQuranById(id: number) {
 }
 
 // lughoh
-export async function createLughoh(id: number, nilai: string, catatan: string) {
+export async function createLughoh(id: string, nilai: string, catatan: string) {
   return await prisma.lughoh.upsert({
     where: {
       userId: id,
     },
     update: {
-      userId: id,
       nilai: nilai,
       catatan: catatan,
     },
@@ -71,7 +69,7 @@ export async function createLughoh(id: number, nilai: string, catatan: string) {
   });
 }
 
-export async function getLughohById(id: number) {
+export async function getLughohById(id: string) {
   return await prisma.lughoh.findUnique({
     where: {
       userId: id,
@@ -80,13 +78,12 @@ export async function getLughohById(id: number) {
 }
 
 // mpu
-export async function createMPU(id: number, nilai: string, catatan: string) {
+export async function createMPU(id: string, nilai: string, catatan: string) {
   return await prisma.mPU.upsert({
     where: {
       userId: id,
     },
     update: {
-      userId: id,
       nilai: nilai,
       catatan: catatan,
     },
@@ -98,7 +95,7 @@ export async function createMPU(id: number, nilai: string, catatan: string) {
   });
 }
 
-export async function getMPUById(id: number) {
+export async function getMPUById(id: string) {
   return await prisma.mPU.findUnique({
     where: {
       userId: id,
@@ -107,13 +104,12 @@ export async function getMPUById(id: number) {
 }
 
 // qiroah
-export async function createQiroah(id: number, nilai: string, catatan: string) {
+export async function createQiroah(id: string, nilai: string, catatan: string) {
   return await prisma.qiroah.upsert({
     where: {
       userId: id,
     },
     update: {
-      userId: id,
       nilai: nilai,
       catatan: catatan,
     },
@@ -125,7 +121,7 @@ export async function createQiroah(id: number, nilai: string, catatan: string) {
   });
 }
 
-export async function getQiroahById(id: number) {
+export async function getQiroahById(id: string) {
   return await prisma.qiroah.findUnique({
     where: {
       userId: id,
@@ -135,7 +131,7 @@ export async function getQiroahById(id: number) {
 
 // kehadiran
 export async function createKehadiran(
-  id: number,
+  id: string,
   izin: number,
   lainnya: number,
   sakit: number
@@ -145,7 +141,6 @@ export async function createKehadiran(
       userId: id,
     },
     update: {
-      userId: id,
       izin: izin,
       lainnya: lainnya,
       sakit: sakit,
@@ -159,7 +154,7 @@ export async function createKehadiran(
   });
 }
 
-export async function getKehadiranById(id: number) {
+export async function getKehadiranById(id: string) {
   return await prisma.kehadiran.findUnique({
     where: {
       userId: id,

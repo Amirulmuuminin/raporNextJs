@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 
 interface PelajaranTileProps {
-  id: number;
+  id: string;
   pelajaran: "lughoh" | "mpu" | "qiroah" | "quran";
 }
 
@@ -55,7 +55,7 @@ export const PelajaranTile: FC<PelajaranTileProps> = async ({
             : "Belum Tersedia"}
         </div>
         <div className="ml-1 mt-2 line-clamp-4">
-          Catatan: <br /> {active?.catatan ?? "Belum Tersedia"}
+          Catatan: <br /> {quran?.catatan ?? "Belum Tersedia"}
         </div>
       </div>
 

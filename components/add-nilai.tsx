@@ -10,7 +10,7 @@ import {
 import FormPelajaran from "./form-pelajaran";
 
 interface TambahKelasProps {
-  id: number;
+  id: string;
   pelajaran: string;
   nilai?: string;
   catatan?: string;

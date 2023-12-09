@@ -3,6 +3,8 @@
 
 import { editNamaMurid } from "@/serverAction/murid";
 import { useState, ChangeEvent, FormEvent } from "react";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   arab: string;
@@ -28,10 +30,16 @@ const FormNama: React.FC<MyFormProps> = ({ id, namaArab }) => {
     });
   };
 
+  const { toast } = useToast();
+  const router = useRouter();
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     editNamaMurid(id, formData.arab);
-    console.log("Nama berhasil diganti");
+    toast({
+      description: "nama berhasil diganti",
+    });
+    router.refresh();
     // Add your logic to handle the form data (e.g., send it to the server)
   };
 

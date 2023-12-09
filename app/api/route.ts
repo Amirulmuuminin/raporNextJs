@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
       status: 404,
     });
 
-  const data = await generate(parseInt(id));
+  const data = await generate(id);
 
   // return new Response("sek sek", { status: 200 });
 

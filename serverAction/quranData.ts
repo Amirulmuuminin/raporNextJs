@@ -11,7 +11,7 @@ export const quranDataPush = async (
   tilawahData: TilawahData[],
   hafalanData: HafalanData[],
   otherData: OtherData,
-  id: number
+  id: string
 ) => {
   // tilawah
   const maqraT = tilawahData
@@ -75,7 +75,7 @@ export const quranDataPush = async (
   );
 };
 
-export const quranDataPull = async (id: number) => {
+export const quranDataPull = async (id: string) => {
   const data = await getQuranById(id);
 
   if (!data) return;

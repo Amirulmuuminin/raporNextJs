@@ -10,15 +10,15 @@ interface pageProps {
 }
 
 const page: FC<pageProps> = async ({ params: { id } }) => {
-  const murid = await getMuridById(parseInt(id));
-  const existingData = await quranDataPull(parseInt(id));
+  const murid = await getMuridById(id);
+  const existingData = await quranDataPull(id);
 
   return (
     <div>
       <h1 className="text-center font-bold mt-5 underline mb-9">
         {murid?.namaIndo}
       </h1>
-      <HafalanForm id={parseInt(id)} existingData={existingData} />
+      <HafalanForm id={id} existingData={existingData} />
     </div>
   );
 };

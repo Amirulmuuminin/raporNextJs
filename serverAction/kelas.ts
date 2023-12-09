@@ -23,7 +23,7 @@ export async function getKelasByIndoName(name: string) {
   });
 }
 
-export async function editKelas(formData: any, id: number) {
+export async function editKelas(formData: any, id: string) {
   await prisma.kelas.update({
     where: {
       id: id,
@@ -32,7 +32,7 @@ export async function editKelas(formData: any, id: number) {
   });
 }
 
-export async function deleteKelas(id: number) {
+export async function deleteKelas(id: string) {
   await prisma.kelas.delete({
     where: {
       id: id,

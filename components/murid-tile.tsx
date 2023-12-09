@@ -7,11 +7,13 @@ interface MuridTileProps {
     namaIndo: string;
     namaArab: string | null;
     kelas: string;
-    id: number;
+    id: string;
+    induk: number;
   }[];
 }
 
 export const MuridTile: FC<MuridTileProps> = ({ allMurid }) => {
+  // console.log(allMurid);
   return (
     <div>
       {allMurid.map((item, i) => {
@@ -28,7 +30,7 @@ export const MuridTile: FC<MuridTileProps> = ({ allMurid }) => {
 
             {/* edit nama */}
             <div className="flex gap-2 absolute -bottom-[16px] right-0 text-[12px]">
-              <EditNama id={item.id} namaArab={item.namaArab ?? undefined} />
+              <EditNama id={item.induk} namaArab={item.namaArab ?? undefined} />
             </div>
           </div>
         );

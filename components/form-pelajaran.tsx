@@ -8,6 +8,8 @@ import {
 } from "@/serverAction/pelajaran";
 import { useState, ChangeEvent, FormEvent } from "react";
 import HafalanForm from "./quran-form";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   nilai: string;
@@ -15,7 +17,7 @@ interface FormData {
 }
 
 interface MyFormProps {
-  id: number;
+  id: string;
   nilai?: string;
   catatan?: string;
   maqra?: string;
@@ -44,6 +46,8 @@ const FormPelajaran: React.FC<MyFormProps> = ({
     });
   };
 
+  const { toast } = useToast();
+  const router = useRouter();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (pelajaran == "lughoh")
@@ -52,7 +56,11 @@ const FormPelajaran: React.FC<MyFormProps> = ({
     if (pelajaran == "qiroah")
       createQiroah(id, formData.nilai, formData.catatan);
 
-    console.log(`Form data submitted: ${pelajaran}`, formData);
+    toast({
+      description: "nilai direkam",
+    });
+
+    router.refresh();
     // Add your logic to handle the form data (e.g., send it to the server)
   };
 

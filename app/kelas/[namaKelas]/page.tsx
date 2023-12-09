@@ -1,4 +1,3 @@
-import { EditNama } from "@/components/edit-nama";
 import { MuridTile } from "@/components/murid-tile";
 import { getMuridByKelas } from "@/serverAction/murid";
 import { FC } from "react";

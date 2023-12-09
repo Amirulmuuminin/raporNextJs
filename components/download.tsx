@@ -14,13 +14,15 @@ const download = (id: string, router: AppRouterInstance) => {
 export const Download: FC<downloadProps> = ({ id }) => {
   const router = useRouter();
   return (
-    <div
+    <button
       className="border border-[#1E1E1E] shadow-[2px_2px_#1E1E1E] bg-[#FFFAF0] uppercase rounded-lg px-3 py-2 fixed bottom-4 right-4 font-bold"
       onClick={() => {
         download(id, router);
       }}
     >
       download
-    </div>
+    </button>
   );
 };
+
+export const dynamic = "force-dynamic";

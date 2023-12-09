@@ -27,7 +27,7 @@ export interface OtherData {
 }
 
 interface HafalanFornProps {
-  id: number;
+  id: string;
   existingData?: {
     tilawahData: {
       jumlahTilawah: string;
