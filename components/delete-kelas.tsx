@@ -15,7 +15,7 @@ import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 
 interface TambahKelasProps {
-  id: number;
+  id: string;
   arab: string;
   wali?: string;
   indo?: string;

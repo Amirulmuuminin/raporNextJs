@@ -13,7 +13,7 @@ interface FormData {
 }
 
 interface MyFormProps {
-  id?: number;
+  id?: string;
   arab?: string;
   wali?: string;
   indo?: string;
@@ -72,7 +72,12 @@ const FormKelas: React.FC<MyFormProps> = ({ id, arab, wali, indo }) => {
     e.preventDefault();
     const exist = await getKelasByName(formData.arab);
     try {
-      if (exist?.arab) throw "kelas sudah ada";
+      if (
+        exist?.arab == formData.arab &&
+        exist.wali == formData.wali &&
+        exist.indo == formData.indo
+      )
+        throw "kelas sudah ada";
       id ? editKelas(formData, id) : addKelas(formData);
       toast({
         variant: "default",

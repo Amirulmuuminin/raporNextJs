@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const allKelas = await prisma.kelas.findMany();
+  // console.log(allKelas);
   // await insertAllMuridData();
 
   return (

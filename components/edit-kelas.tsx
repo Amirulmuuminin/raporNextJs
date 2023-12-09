@@ -10,7 +10,7 @@ import {
 import MyForm from "./form-kelas";
 
 interface TambahKelasProps {
-  id?: number;
+  id?: string;
   arab?: string;
   wali?: string;
   indo?: string;

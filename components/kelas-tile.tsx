@@ -17,6 +17,7 @@ export const KelasTile: FC<KelasTileProps> = ({ allKelas }) => {
   return (
     <div>
       {allKelas.map((item, i) => {
+        console.log(item.id);
         return (
           <div
             key={i}
@@ -35,11 +36,11 @@ export const KelasTile: FC<KelasTileProps> = ({ allKelas }) => {
             <div className="flex gap-2 absolute -bottom-[16px] right-0 text-[12px]">
               <EditKelas
                 arab={item.arab}
-                id={parseInt(item.id)}
+                id={item.id}
                 indo={item.indo}
                 wali={item.wali}
               />
-              <DeleteKelas id={parseInt(item.id)} arab={item.arab} />
+              <DeleteKelas id={item.id} arab={item.arab} />
             </div>
           </div>
         );
