@@ -10,7 +10,7 @@ import {
 import FormNama from "./form-nama";
 
 interface TambahKelasProps {
-  id: number;
+  id: string;
   namaArab?: string;
 }
 

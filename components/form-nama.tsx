@@ -11,7 +11,7 @@ interface FormData {
 }
 
 interface MyFormProps {
-  id: number;
+  id: string;
   namaArab?: string;
 }
 
