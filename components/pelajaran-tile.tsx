@@ -34,7 +34,7 @@ export const PelajaranTile: FC<PelajaranTileProps> = async ({
       </div>
 
       <div className="mt-2 ml-2 h-28 w-64 text-[#1E1E1E] border border-[#1E1E1E] text-start bg-[#FFA89A] py-1 px-2 rounded-lg text-[10px]">
-        <div className="mt-1 ml-1 w-fit text-[#1E1E1E] border border-[#1E1E1E] text-start bg-[#FFFAF0] py-1 px-2 rounded-lg shadow-[2px_2px_#1E1E1E]">
+        <div className="mt-1 ml-1 w-fit text-[#1E1E1E] border border-[#1E1E1E] text-start bg-[#FFFAF0] py-1 px-2 rounded-lg shadow-[2px_2px_#1E1E1E] line-clamp-2">
           {pelajaran !== "quran"
             ? `Nilai: ${active?.nilai ?? "Belum Tersedia"}`
             : quran?.maqraH ?? quran?.maqraT
@@ -55,7 +55,10 @@ export const PelajaranTile: FC<PelajaranTileProps> = async ({
             : "Belum Tersedia"}
         </div>
         <div className="ml-1 mt-2 line-clamp-4">
-          Catatan: <br /> {quran?.catatan ?? "Belum Tersedia"}
+          Catatan: <br />{" "}
+          {pelajaran == "quran"
+            ? quran?.catatan
+            : active?.catatan ?? "Belum Tersedia"}
         </div>
       </div>
 
