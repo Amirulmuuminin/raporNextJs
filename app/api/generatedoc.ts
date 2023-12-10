@@ -49,8 +49,12 @@ export async function generate(id: string) {
     nama: murid?.namaArab ?? "belum diinput",
     no_induk: murid?.induk ?? "belum diinput",
     kelas: kelas?.arab ?? "belum diinput",
-    maqraH: murid?.Quran?.maqraH.replace(/[()]/g, "") ?? "",
-    maqraT: murid?.Quran?.maqraT.replace(/[()]/g, "") ?? "",
+    maqraH:
+      murid?.Quran?.maqraH.replace(/[()]/g, "").replace(/[undefined]/g, "") ??
+      "",
+    maqraT:
+      murid?.Quran?.maqraT.replace(/[()]/g, "").replace(/[undefined]/g, "") ??
+      "",
     prediketH: murid?.Quran?.prediketH ?? "",
     prediketT: murid?.Quran?.prediketT ?? "",
     nilaiH: murid?.Quran?.nilaiH ?? "",

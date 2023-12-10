@@ -16,7 +16,7 @@ export const TambahKelas: FC<TambahKelasProps> = ({}) => {
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
-          <div className="border border-[#1E1E1E] bg-[#ABE5BC] uppercase rounded-lg px-3 py-2 fixed bottom-4 right-4 font-bold">
+          <div className="border border-[#1E1E1E] bg-[#CFADE8] uppercase rounded-lg px-3 py-2  font-bold">
             Tambah Kelas
           </div>
         </AlertDialogTrigger>

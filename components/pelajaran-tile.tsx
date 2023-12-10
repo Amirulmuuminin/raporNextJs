@@ -38,23 +38,10 @@ export const PelajaranTile: FC<PelajaranTileProps> = async ({
           {pelajaran !== "quran"
             ? `Nilai: ${active?.nilai ?? "Belum Tersedia"}`
             : quran?.maqraH ?? quran?.maqraT
-            ? quran.maqraH.split("\n").map((item, i) => {
-                return (
-                  <p key={i}>
-                    {item}: {quran.nilaiH.split("\n")[i]}
-                  </p>
-                );
-              }) ??
-              quran.maqraT.split("\n").map((item, i) => {
-                return (
-                  <p key={i}>
-                    {item}: {quran.nilaiT.split("\n")[i]}
-                  </p>
-                );
-              })
+            ? "Data Exist"
             : "Belum Tersedia"}
         </div>
-        <div className="ml-1 mt-2 line-clamp-2">
+        <div className="ml-1 mt-2 line-clamp-4">
           Catatan: <br />{" "}
           {pelajaran == "quran"
             ? quran?.catatan

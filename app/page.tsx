@@ -11,9 +11,11 @@ export default async function Home() {
   // await insertAllMuridData();
 
   return (
-    <>
-      <TambahKelas />
+    <div className="relative">
+      <div className="fixed bottom-4 right-4 z-10">
+        <TambahKelas />
+      </div>
       <KelasTile allKelas={allKelas} />
-    </>
+    </div>
   );
 }

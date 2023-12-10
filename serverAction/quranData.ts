@@ -103,34 +103,55 @@ export const quranDataPull = async (id: string) => {
   const prediketT = data?.prediketT.split("\n").map((item) => {
     return item;
   });
-  const tilawahData = maqraT?.map((item, i) => {
-    return {
-      jumlahTilawah: item,
-      juz: juzT[i]?.toString(),
-      nilai: nilaiT[i],
-      prediket: prediketT[i],
-    };
-  });
+  const tilawahData = maqraT
+    ?.map((item, i) => {
+      return {
+        jumlahTilawah: item,
+        juz: juzT[i]?.toString(),
+        nilai: nilaiT[i],
+        prediket: prediketT[i],
+      };
+    })
+    .filter((item) => item.jumlahTilawah !== "()");
+
+  if (tilawahData.length == 0)
+    tilawahData.push({
+      jumlahTilawah: "",
+      juz: "",
+      nilai: "",
+      prediket: "",
+    });
 
   // ekstrak hafalan
   const juzH = extractNumbersInsideParentheses(data.maqraH);
   const maqraH = data?.maqraH.split("\n").map((item) => {
     return item.replace(/\([^)]+\)/, "").trim();
   });
+
   const nilaiH = data?.nilaiH.split("\n").map((item) => {
     return item;
   });
   const prediketH = data?.prediketH.split("\n").map((item) => {
     return item;
   });
-  const hafalanData = maqraH?.map((item, i) => {
-    return {
-      jumlahHafalan: item,
-      juz: juzH[i]?.toString(),
-      nilai: nilaiH[i],
-      prediket: prediketH[i],
-    };
-  });
+  const hafalanData = maqraH
+    ?.map((item, i) => {
+      return {
+        jumlahHafalan: item,
+        juz: juzH[i]?.toString(),
+        nilai: nilaiH[i],
+        prediket: prediketH[i],
+      };
+    })
+    .filter((item) => item.jumlahHafalan !== "()");
+
+  if (hafalanData.length == 0)
+    hafalanData.push({
+      jumlahHafalan: "",
+      juz: "",
+      nilai: "",
+      prediket: "",
+    });
 
   const kehadiran = await getKehadiranById(id);
 
