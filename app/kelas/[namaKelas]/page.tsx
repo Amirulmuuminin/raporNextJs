@@ -9,6 +9,8 @@ interface pageProps {
 }
 
 const page: FC<pageProps> = async ({ params: { namaKelas } }) => {
+  namaKelas = namaKelas.replace(/%20/g, " ");
+
   const allMurid = await getMuridByKelas(namaKelas);
 
   return (
