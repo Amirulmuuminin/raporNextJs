@@ -14,13 +14,6 @@ export async function generate(id: string) {
   const murid = await getMuridById(id);
   const kelas = await getKelasByIndoName(murid?.kelas!);
 
-  const kelasLima =
-    kelas?.arab == "الزبير بن العوام" || "طلحة بن عبيد الله"
-      ? `الخامس/${kelas?.arab}`
-      : undefined;
-
-  const kelasSatu =
-    kelas?.arab == "عبد الله بن مسعود" ? `الأول/${kelas.arab}` : undefined;
   // filter for special kelas muadz
   if (murid?.kelas !== "Muadz") {
     const getNilai = (nilai: number) => {
@@ -57,7 +50,7 @@ export async function generate(id: string) {
       wali_kelas: kelas?.wali ?? "belum diinput",
       nama: murid?.namaArab ?? "belum diinput",
       no_induk: murid?.induk ?? "belum diinput",
-      kelas: kelasSatu ?? kelasLima ?? kelas?.arab ?? "belum diinput",
+      kelas: kelas?.arab ?? "belum diinput",
       maqraH:
         murid?.Quran?.maqraH.replace(/[()]/g, "").replace(/[undefined]/g, "") ??
         "",
